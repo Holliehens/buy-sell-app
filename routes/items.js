@@ -3,11 +3,12 @@
  */
 
 const express = require('express');
-const router  = express.Router();
+const router = express.Router();
 
 module.exports = (db) => {
-  // find all items to display on front page
-  router.get("/items", (req, res) => {
+
+  // Renders entire items table
+  router.get("/item", (req, res) => {
     let query = `SELECT * FROM items`;
     console.log(query);
     db.query(query)
@@ -21,5 +22,34 @@ module.exports = (db) => {
           .json({ error: err.message });
       });
   });
+
+  // Renders single item page
+  router.get("/item/:id", (req, res) => {
+    /* Get item id
+    - SELECT item from items database
+    - Renders item.ejs file according to data selected */
+  })
+
+  // Delete item from items table
+  router.post("/item/:id/delete", (req, res) => {
+    /* Check if current user has permissions in users table
+    - Get item id
+    - Create DELETE query that will drop item id from database */
+  });
+
+  // Edit item as being sold
+  router.post("/item/:id/sold", (req, res) => {
+    /* Check if current user has permissions in users table
+  - Get item id
+  - UPDATE query that checks item as sold and the user id of who purchased it*/
+  });
+
+  // Check if item is to be featured or not
+  router.post("/item/:id", (req, res) => {
+    /* Check if current user has permissions in users table
+  - Get item id
+  - UPDATE query requesting item be featured or not */
+  });
+
   return router;
 };

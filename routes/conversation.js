@@ -7,12 +7,37 @@ const router = express.Router();
 
 module.exports = (db) => {
 
-  // find message thread via conversation ID in database
-  router.get("/conversation/:id", (req, res) => {
+  // rendering single messaging thread between current user and other user about specific item
+  router.get("/conversation", (req, res) => {
+
+    const userID = req.params.user_id;
+
+    // find conversation in database
+    const queryConvo = `SELECT conversation.*
+    build query to find: participants, messages, etc.
+    Order by date posted`;
+
+    db.query(queryConvo)
+
+      .then(/* if no error, render the conversation requested from database */ data => {
+        const templateVars;
+        res.render("conversation", templateVars)
+      })
+      .catch(err => {
+        res
+          .status(500)
+          .json({ error: err.message });
+      });
+
   });
 
-  // create new post within conversation thread
-  router.post("/:id", (req, res) => {
+  // initializes new conversation between users about item
+  router.post("/conversation", (req, res) => {
+    /* Get current user id of user initiating contact
+    - Get item id of item being inquired about
+    - Get seller id of item -> inquire database to find seller
+    - Make INSERT query into conversations table to create new conversation id
+    - Redirect to new conversation*/
   });
 
   return router;

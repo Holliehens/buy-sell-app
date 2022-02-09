@@ -6,14 +6,15 @@ const express = require('express');
 const router  = express.Router();
 
 module.exports = (db) => {
-  // find all items by ascending price
+
+  // sort items by ascending price
   router.get("/items/asc", (req, res) => {
-    let query = `SELECT * FROM items`;
+    /* SELECT query getting all items ascending */
   });
 
-  // find all items by ascending price
+  // sort items by descending price
   router.get("/items/desc", (req, res) => {
-    let query = `SELECT * FROM items`;
+    /* SELECT query getting all items descending */
   });
 
   return router;

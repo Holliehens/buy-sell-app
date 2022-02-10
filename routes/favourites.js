@@ -12,6 +12,7 @@ module.exports = (db) => {
     /* Get current user's id
     - Create SELECT query getting all entries in favourites table associated with user
     - Get all item ids from favourites found and render */
+    res.render("favourites");
   });
 
   // add item to user's favourites

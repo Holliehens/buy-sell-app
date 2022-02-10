@@ -20,8 +20,7 @@ module.exports = (db) => {
     db.query(queryConvo)
 
       .then(/* if no error, render the conversation requested from database */ data => {
-        const templateVars;
-        res.render("conversation", templateVars)
+        res.render("conversation")
       })
       .catch(err => {
         res
@@ -29,6 +28,11 @@ module.exports = (db) => {
           .json({ error: err.message });
       });
 
+  });
+
+  // rendering the full inbox
+  router.get("/inbox", (req, res) => {
+    res.render("inbox");
   });
 
   // initializes new conversation between users about item

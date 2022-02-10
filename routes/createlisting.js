@@ -11,6 +11,7 @@ module.exports = (db) => {
   router.get("/createlisting", (req, res) => {
     /* Check if current user has permissions
     - Render form that used to create INSERT query to initialize item into database*/
+    res.render("createlisting");
   });
 
   // Initializes item into database

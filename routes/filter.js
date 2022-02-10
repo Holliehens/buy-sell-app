@@ -10,6 +10,7 @@ module.exports = (db) => {
   // sort items by ascending price
   router.get("/items/asc", (req, res) => {
     /* SELECT query getting all items ascending */
+    res.render("filter");
   });
 
   // sort items by descending price

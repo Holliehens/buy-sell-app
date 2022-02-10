@@ -35,16 +35,24 @@ app.use(express.static("public"));
 
 // Separated Routes for each Resource
 // Note: Feel free to replace the example routes below with your own
-const usersRoutes = require("./routes/users");
+const convRoutes = require("./routes/conversation");
+const listRoutes = require("./routes/createlisting");
 const favRoutes = require("./routes/favourites");
+const filterRoutes = require("./routes/filters");
+const itemsRoutes = require("./routes/items");
 const mesRoutes = require("./routes/messages");
+const usersRoutes = require("./routes/users");
+
 
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
+app.use("/", convRoutes(db));
+app.use("/", listRoutes(db));
+app.use("/", favRoutes(db));
+app.use("/", filterRoutes(db));
+app.use("/", itemsRoutes(db));
+app.use("/", mesRoutes(db));
 app.use("/api/users", usersRoutes(db));
-app.use("/api/favourites", favRoutes(db));
-app.use("/api/widgets", widgetsRoutes(db));
-app.use("/api/messages", mesRoutes(db));
 // Note: mount other resources here, using the same pattern above
 
 // Home page
@@ -53,6 +61,11 @@ app.use("/api/messages", mesRoutes(db));
 
 app.get("/", (req, res) => {
   res.render("index");
+});
+
+app.get('/login/:id', (req, res) => {
+  req.session.user_id = req.params.id;
+  res.redirect('/');
 });
 
 app.listen(PORT, () => {

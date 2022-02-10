@@ -16,6 +16,7 @@ module.exports = (db) => {
   // sort items by descending price
   router.get("/items/desc", (req, res) => {
     /* SELECT query getting all items descending */
+    res.render("filter")
   });
 
   return router;

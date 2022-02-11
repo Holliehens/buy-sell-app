@@ -58,6 +58,15 @@ app.get("/", (req, res) => {
   res.render("index");
 });
 
+app.get("/hacklogin/:user_id", (req, res) => {
+  req.session.user_id = req.params.user_id;
+  res.send('You Are Now Logged In!');
+});
+
+
+
 app.listen(PORT, () => {
   console.log(`Example app listening on port ${PORT}`);
 });
+
+

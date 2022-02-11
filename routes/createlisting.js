@@ -12,6 +12,7 @@ module.exports = (db) => {
     /* Check if current user has permissions
     - Render form that used to create INSERT query to initialize item into database*/
     // render ejs template
+    res.render('createlisting', { userID: req.session.user_id });
   });
 
   // Initializes item into database
@@ -20,14 +21,15 @@ module.exports = (db) => {
   - Require: name, description, price, photo_url
   - Optional: is item featured
   - Create INSERT query with all above information into item table */
-  const item_id = req.session.items_id;
+    // If admin id:1  if not id:0
   const { description, price, photo_url } = req.body;
 
-  let query = 'INSERT INTO items (id, description, price, photo_url) VALUES($1, $2, $3, $4)';
+  let query = 'INSERT INTO items (description, price, photo_url) VALUES($1, $2, $3) RETURNING *';
   console.log(query);
-  db.query(query, [item_id, description, price, photo_url])
+  db.query(query, [description, price, photo_url])
     .then(data => {
       const item = data.rows[0];
+      console.log(data.rows[0]);
       res.json({ item });
     })
     .catch(err => {

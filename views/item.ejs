@@ -2,9 +2,11 @@
 <html lang="en">
 
 <head>
-  <title>
-    <%= item.name %>
-  </title>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Home Page</title>
 
   <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
   <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
@@ -14,6 +16,7 @@
   <link rel="stylesheet" href="/styles/nav.css" type="text/css" />
   <link rel="stylesheet" href="/styles/items.css" type="text/css" />
   <link rel="stylesheet" href="/styles/fonts.css" type="text/css" />
+  <link rel="stylesheet" href="/styles/search.css" type="text/css" />
 
   <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
   <script type="text/javascript" src="/scripts/app.js"></script>
@@ -21,35 +24,42 @@
 
 <body>
   <%- include('partials/_header') %>
-    <!-- display item page -->
-    <main class="item-page">
-      <h1>
-        <%= item.name %>
-      </h1>
-      <img src="<%= item.photo_url %>" alt="<%= item.name %>">
-      <div id="item-description">
-        <p>
-          <%= item.description %>
-        </p>
+    <!-- display home page -->
+
+    <main>
+      <h1>🔥Featured Deals Right Now🔥</h1>
+      <section class="item-grid">
+        <% for(let feature in featured) { %>
+          <div class="<%= featured[feature].is_sold === true ? 'sold-preview' : 'small-preview' %>">
+            <a href="/item/<%= featured[feature].id %>">
+              <img src="<%= featured[feature].photo_url %>">
+            </a>
+            <%= featured[feature].name %>
+          </div>
+          <% } %>
+      </section>
+
+      <div class="search-filters">
+        <button class="dropbtn">Search Through</button>
+        <div class="dropdown-content">
+          <input type="number" value="">
+          <a href="#">Link 2</a>
+          <a href="#">Link 3</a>
+        </div>
       </div>
-      <h3>Price: $<%= item.price %>
-      </h3>
 
-      <form class="favourite" action="/favourites/<%= item.id %>" method="POST">
-        <label for="fav">Favourite?</label>
-        <input type="submit" value="Submit">
-      </form>
 
-      <form class="msg-seller" action="/conversation" method="POST">
-        <label for="first-msg">Send Messaging to Seller</label>
-        <br>
-        <input type="text" id="first-msg" name="first-msg" value="I'd love to buy your item!">
-
-        <br>
-
-        <input type="submit" value="Submit">
-      </form>
-
+      <h1>💖💖All Items Right Now</h1>
+      <section class="item-grid">
+        <% for(let item in items) { %>
+          <div class="<%= items[item].is_sold === true ? 'sold-preview' : 'small-preview' %>">
+            <a href="/item/<%= items[item].id %>">
+              <img src="<%= items[item].photo_url %>">
+            </a>
+            <%= items[item].name %>
+          </div>
+          <% } %>
+      </section>
     </main>
 </body>
 

@@ -2,11 +2,9 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <title><%= item.name %></title>
+  <title>
+    <%= item.name %>
+  </title>
 
   <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
   <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
@@ -25,11 +23,22 @@
   <%- include('partials/_header') %>
     <!-- display item page -->
     <main class="item-page">
-      <h1><%= item.name %></h1>
-      <img src="<%= item.photo_url %>"
-        alt="item photo">
-      <div id="item-description"><p><%= item.description %></p></div>
-      <h3>Price: $<%= item.price %></h3>
+      <h1>
+        <%= item.name %>
+      </h1>
+      <img src="<%= item.photo_url %>" alt="<%= item.name %>">
+      <div id="item-description">
+        <p>
+          <%= item.description %>
+        </p>
+      </div>
+      <h3>Price: $<%= item.price %>
+      </h3>
+
+      <form class="favourite" action="/favourites/<%= item.id %>" method="POST">
+        <label for="fav">Favourite?</label>
+        <input type="submit" value="Submit">
+      </form>
 
       <form class="msg-seller" action="/conversation" method="POST">
         <label for="first-msg">Send Messaging to Seller</label>
@@ -40,10 +49,7 @@
 
         <input type="submit" value="Submit">
       </form>
-      <form class="favourite" action="/favourite" method="POST">
-        <label for="fav">Favourite?</label>
-        <input type="submit" value="Submit">
-      </form>
+
     </main>
 </body>
 

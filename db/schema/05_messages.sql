@@ -8,4 +8,3 @@ CREATE TABLE messages (
   message TEXT NOT NULL,
   date_posted TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
-

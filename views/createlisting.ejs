@@ -21,41 +21,16 @@
 <body>
 
   <%- include('partials/_header') %>
-
-    <main>
-      <!-- form to post new item to database to sell -->
-      <form class="listing-form">
-        <h1>List a new item:</h1>
-        <br>
-        <label for="name">Name:</label>
-        <input type="text" id="name" name="name" value="Title your item!">
-
-        <br>
-
-        <label for="description">Description:</label>
-        <input type="textarea" id="description" name="description" value="Please describe your item">
-
-        <br>
-
-        <label for="price">Price:</label>
-        <input type="number" id="price" name="price" value="0.00">
-
-        <br>
-
-        <label for="photo_url">Upload photo URL:</label>
-        <input type="text" id="photo" name="photo" value="Add photo url here">
-
-        <br>
-
-        <label for="featured">Feature item?</label>
-        <input type="checkbox" id="feature" name="feature" value="featured">
-
-        <br>
-
-        <input type="submit" value="Submit">
-      </form>
-    </main>
-
+  <form class="form-inline" action="/createlisting" method="POST">
+    <div class="form-group mb-2">
+      <label >Enter Item Information:</label>
+      <input class="form-control" type="text" name="name" placeholder="Enter Name" >
+      <input class="form-control" type="text" name="description" placeholder="Enter Description" >
+      <input class="form-control" type="text" name="price" placeholder="Enter Price" >
+      <input class="form-control" type="text" name="photo_url" placeholder="Enter Photo URL" >
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </div>
+  </form>
 </body>
 
 </html>

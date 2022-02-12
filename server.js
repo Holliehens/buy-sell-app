@@ -41,28 +41,27 @@ app.use(express.static("public"));
 
 // Separated Routes for each Resource
 // Note: Feel free to replace the example routes below with your own
+const adsRoutes = require("./routes/admins");
+const convsRoutes = require("./routes/conversation");
+const listingsRoutes = require("./routes/createlisting");
+const favsRoutes = require("./routes/favourites");
+const itemsRoutes = require("./routes/items");
+const login = require("./routes/login");
+const mesRoutes = require("./routes/messages");
 const usersRoutes = require("./routes/users");
-const widgetsRoutes = require("./routes/widgets");
-const adminRoutes = require("./routes/admins");
-const messagesRoutes = require("./routes/messages");
-const favouritesRoutes = require("./routes/favourites");
-const createlisting = require("./routes/createlisting");
+
 
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
-app.use("/", convRoutes(db));
-app.use("/", listRoutes(db));
-app.use("/", favRoutes(db));
-app.use("/", filterRoutes(db));
+app.use("/", adsRoutes(db));
+app.use("/", convsRoutes(db));
+app.use("/createlisting", listingsRoutes(db));
+app.use("/", favsRoutes(db));
 app.use("/", itemsRoutes(db));
+app.use("/", login(db));
 app.use("/", mesRoutes(db));
 app.use("/api/users", usersRoutes(db));
-app.use("/api/admins", adminRoutes(db));
-app.use("/api/messages", messagesRoutes(db));
-app.use("/api/favourites", favouritesRoutes(db));
-app.use("/createlisting", createlisting(db));
 // Note: mount other resources here, using the same pattern above
-
 // Home page
 // Warning: avoid creating more routes in this file!
 // Separate them into separate routes files (see above).

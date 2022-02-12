@@ -22,7 +22,6 @@ module.exports = (db) => {
   - Require: name, description, price, photo_url
   - Optional: is item featured
   - Create INSERT query with all above information into item table */
-    // If admin id:1  if not id:0
     const user_id = req.session.user_id;
     if (!user_id) {
       return res
@@ -38,7 +37,7 @@ module.exports = (db) => {
     .then(data => {
       const item = data.rows[0];
       console.log(data.rows[0]);
-      res.json({ item });
+      res.redirect("/createlisting");
     })
     .catch(err => {
       res

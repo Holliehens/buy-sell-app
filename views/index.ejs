@@ -6,37 +6,60 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+  <title>Home Page</title>
+
   <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
   <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
   <link rel="stylesheet" href="/styles/main.css" type="text/css" />
   <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
+
   <link rel="stylesheet" href="/styles/nav.css" type="text/css" />
+  <link rel="stylesheet" href="/styles/items.css" type="text/css" />
+  <link rel="stylesheet" href="/styles/fonts.css" type="text/css" />
+  <link rel="stylesheet" href="/styles/search.css" type="text/css" />
 
   <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
   <script type="text/javascript" src="/scripts/app.js"></script>
-
-  <title>Home Page</title>
 </head>
 
 <body>
   <%- include('partials/_header') %>
     <!-- display home page -->
-    <main class="order">
-      <label for="featured-items">Featured Items</label>
-      <section id="featured-items">
 
-        <br>
+    <main>
+      <h1>🔥Featured Deals Right Now🔥</h1>
+      <section class="item-grid">
+        <% for(let feature in featured) { %>
+          <div class="small-preview">
+            <a href="/item/<%= featured[feature].id %>">
+              <img src="<%= featured[feature].photo_url %>">
+            </a>
+            <%= featured[feature].name %>
+          </div>
+        <% } %>
+      </section>
 
-        <div class="filter-class">
-          <button>Ascending</button>
-          <button>Descending</button>
+      <div class="search-filters">
+        <button class="dropbtn">Search Through</button>
+        <div class="dropdown-content">
+          <input type="number" value="">
+          <a href="#">Link 2</a>
+          <a href="#">Link 3</a>
         </div>
+      </div>
 
-        <br>
 
-        <label for="items-listed">Items</label>
-        <section id="items-listed">
-
+      <h1>💖💖All Items Right Now</h1>
+      <section class="item-grid">
+        <% for(let item in items) { %>
+          <div class="small-preview">
+            <a href="/item/<%= items[item].id %>">
+              <img src="<%= items[item].photo_url %>">
+            </a>
+            <%= items[item].name %>
+          </div>
+        <% } %>
+      </section>
     </main>
 </body>
 

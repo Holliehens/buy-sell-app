@@ -1,0 +1,29 @@
+.item-page img {
+  max-width: 450px;
+}
+
+#first-msg {
+  width: 450px;
+  height: 200px;
+}
+
+.item-grid {
+  display: inline-grid;
+  grid-template-columns: auto auto;
+}
+
+.small-preview {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  padding: 10px;
+
+  font-size: 1.2em;
+  font-weight: bold;
+}
+
+.small-preview img {
+  max-width: 200px;
+}

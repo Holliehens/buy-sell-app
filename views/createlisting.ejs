@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
+  <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
+  <link rel="stylesheet" href="/styles/main.css" type="text/css" />
+  <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
+  <link rel="stylesheet" href="/styles/nav.css" type="text/css" />
+  <link rel="stylesheet" href="/styles/createlisting.css" type="text/css" />
+
+  <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
+  <script type="text/javascript" src="/scripts/app.js"></script>
+  <title>Create Item Listing</title>
+</head>
+
+<body>
+
+  <%- include('partials/_header') %>
+
+    <main>
+      <!-- form to post new item to database to sell -->
+      <form class="listing-form">
+        <h1>List a new item:</h1>
+        <br>
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" value="Title your item!">
+
+        <br>
+
+        <label for="description">Description:</label>
+        <input type="textarea" id="description" name="description" value="Please describe your item">
+
+        <br>
+
+        <label for="price">Price:</label>
+        <input type="number" id="price" name="price" value="0.00">
+
+        <br>
+
+        <label for="photo_url">Upload photo URL:</label>
+        <input type="text" id="photo" name="photo" value="Add photo url here">
+
+        <br>
+
+        <label for="featured">Feature item?</label>
+        <input type="checkbox" id="feature" name="feature" value="featured">
+
+        <br>
+
+        <input type="submit" value="Submit">
+      </form>
+    </main>
+
+</body>
+
+</html>

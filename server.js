@@ -41,7 +41,6 @@ app.use(express.static("public"));
 
 // Separated Routes for each Resource
 // Note: Feel free to replace the example routes below with your own
-const adsRoutes = require("./routes/admins");
 const convsRoutes = require("./routes/conversation");
 const listingsRoutes = require("./routes/createlisting");
 const favsRoutes = require("./routes/favourites");
@@ -53,7 +52,6 @@ const usersRoutes = require("./routes/users");
 
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
-app.use("/", adsRoutes(db));
 app.use("/", convsRoutes(db));
 app.use("/createlisting", listingsRoutes(db));
 app.use("/", favsRoutes(db));
@@ -68,9 +66,11 @@ app.use("/api/users", usersRoutes(db));
 
 app.get("/", (req, res) => {
   let query = `SELECT * FROM items`;
+
   db.query(query)
   .then(data => {
-    const templateVars = { items: data.rows, featured: data.rows.filter(x => x.featured) };
+    const templateVars = { userID: req.session.user_id, items: data.rows, featured: data.rows.filter(x => x.featured) };
+    console.log(templateVars.userID);
     res.render("index", templateVars);
   })
   .catch(err => {
@@ -79,12 +79,6 @@ app.get("/", (req, res) => {
       .json({ error: err.message });
   });
 })
-
-app.get("/hacklogin/:user_id", (req, res) => {
-  req.session.user_id = req.params.user_id;
-  res.send('You Are Now Logged In!');
-});
-
 
 app.listen(PORT, () => {
   console.log(`Example app listening on port ${PORT}`);

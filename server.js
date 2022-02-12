@@ -7,6 +7,7 @@ const sassMiddleware = require("./lib/sass-middleware");
 const express = require("express");
 const app = express();
 const morgan = require("morgan");
+const session = require("cookie-session");
 
 // PG database client/connection setup
 const { Pool } = require("pg");
@@ -21,6 +22,11 @@ app.use(morgan("dev"));
 
 app.set("view engine", "ejs");
 app.use(express.urlencoded({ extended: true }));
+app.use(session({
+  name: 'session',
+  keys: ['keys']
+
+}));
 
 app.use(
   "/styles",
@@ -40,14 +46,16 @@ const widgetsRoutes = require("./routes/widgets");
 const adminRoutes = require("./routes/admins");
 const messagesRoutes = require("./routes/messages");
 const favouritesRoutes = require("./routes/favourites");
+const createlisting = require("./routes/createlisting");
+
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
 app.use("/api/users", usersRoutes(db));
-app.use("/api/favourites", favRoutes(db));
 app.use("/api/widgets", widgetsRoutes(db));
 app.use("/api/admins", adminRoutes(db));
 app.use("/api/messages", messagesRoutes(db));
 app.use("/api/favourites", favouritesRoutes(db));
+app.use("/createlisting", createlisting(db));
 // Note: mount other resources here, using the same pattern above
 
 // Home page
@@ -55,7 +63,7 @@ app.use("/api/favourites", favouritesRoutes(db));
 // Separate them into separate routes files (see above).
 
 app.get("/", (req, res) => {
-  res.render("index");
+  res.render("index", { userID: req.session.user_id });
 });
 
 app.get("/hacklogin/:user_id", (req, res) => {

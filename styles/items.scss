@@ -27,3 +27,28 @@
 .small-preview img {
   max-width: 200px;
 }
+
+.sold-preview {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  padding: 10px;
+
+  font-size: 1.2em;
+  font-weight: bold;
+
+}
+
+.sold-preview img {
+  filter: grayscale(100%);
+  max-width: 200px;
+}
+
+.sold-preview a {
+  color: red;
+  cursor: not-allowed;
+  opacity: 0.5;
+  text-decoration: none;
+}

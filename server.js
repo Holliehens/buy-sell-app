@@ -57,7 +57,6 @@ app.use("/", filterRoutes(db));
 app.use("/", itemsRoutes(db));
 app.use("/", mesRoutes(db));
 app.use("/api/users", usersRoutes(db));
-app.use("/api/widgets", widgetsRoutes(db));
 app.use("/api/admins", adminRoutes(db));
 app.use("/api/messages", messagesRoutes(db));
 app.use("/api/favourites", favouritesRoutes(db));

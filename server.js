@@ -38,7 +38,7 @@ app.use(express.static("public"));
 const usersRoutes = require("./routes/users");
 const convRoutes = require("./routes/conversation");
 const listRoutes = require("./routes/createlisting");
-const favRoutes = require("./routes/favourites");
+// const favRoutes = require("./routes/favourites");
 const itemsRoutes = require("./routes/items");
 const mesRoutes = require("./routes/messages");
 
@@ -47,7 +47,7 @@ const mesRoutes = require("./routes/messages");
 // Note: Feel free to replace the example routes below with your own
 app.use("/", convRoutes(db));
 app.use("/", listRoutes(db));
-app.use("/", favRoutes(db));
+// app.use("/", favRoutes(db));
 // app.use("/", filterRoutes(db));
 app.use("/", itemsRoutes(db));
 app.use("/", mesRoutes(db));
